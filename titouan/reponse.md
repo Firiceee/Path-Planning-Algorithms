@@ -7,3 +7,15 @@ For the particles we will define the class `particles` storing and updating the 
  - hyperparameters : $s$,$c_1$,$c_2$,$w$
 
 We will use the fitness function : quadratic distance to the arrival point.
+
+
+### 5) 
+
+Initialize $n$ particles at position $(0, 0)$.
+During $N$ iterations:
+    - Update the position of particles who have not yet colided.
+    - Find which particles have colided with the environment.
+    - Compute the minimum distance with the endpoint of the uncolided particles and store the associated position for the following iteration.
+
+let epsilon be the radius of the largest circle centered on the endpoint which does not overlap with any rectangle of the environment.
+For every particle that got into the epsilon radius circle without coliding, find the one with the minimum distance to reach it
