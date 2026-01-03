@@ -22,12 +22,10 @@ class Environment:
         """
         self.rectangles = []
         if scenario != None:
-            path = f'../scenarios/scenario{scenario}.txt'
+            path = f'scenarios/scenario{scenario}.txt'
         with open(path, 'r') as f:
             head = [f.readline() for i in range(11)]
             lines = [float(i.strip().upper()) for i in head]
-            print("lines")
-            print(lines)
             self.topright = np.array([lines[0], lines[1]])
             self.us = (lines[2], lines[3])
             self.ud = (lines[4], lines[5])
@@ -115,7 +113,6 @@ class Environment:
         :param point1: np.array shape : (2, )
         """
         if self._is_point_in_rectangles(point1) or self._is_point_in_rectangles(point2):
-            print("in rectangle")
             return True
         
         if not (self._is_point_in_map(point1) and self._is_point_in_map(point2)):
@@ -138,11 +135,6 @@ class Environment:
                         t = (a[i] - point1[0]) / (point2[0] - point1[0])
                         alpha = ((1-t) * point1[1] + t * point2[1] - b[i]) / ly[i]
                         if 0 <= t <= 1 and 0 <= alpha <= 1:
-                            print("lx")
-                            print(i)
-                            print(t, alpha)
-                            print(rect)
-                            print(f"{a[i], b[i], lx[i], ly[i]=}")
                             cuts_through_side = True
                 else:
                     # ly[i] == 0, horizontal side
@@ -158,11 +150,9 @@ class Environment:
                             cuts_through_side = True
                 
                 if cuts_through_side:
-                    print(point1, point2)
-                    print("cutting through side")
+                    
                     return True
                 
-        print("no colision")
         return False
 
         
